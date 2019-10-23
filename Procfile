@@ -1,1 +1,1 @@
-web: dokku-example
+web: dokku-example-go

@@ -1,11 +1,13 @@
-# Example of Deployment of Golang project via Dokku
+# Dokku Example Go 
+
+Example of Deployment of Golang project via Dokku
 
 ## On server machine:
 
 - Install dokku:
 ``` 
-wget https://raw.githubusercontent.com/dokku/dokku/v0.12.12/bootstrap.sh
-sudo DOKKU_TAG=v0.12.12 bash bootstrap.sh
+http://dokku.viewdocs.io/dokku/
+
 ```
 - Go to browser on and put public ip of server. And add the public ssh key.
 
@@ -32,21 +34,16 @@ dokku config:set $MYPROJECT PLATFORM=$MYPROJECT // not necessary
 - Project folder must be inside: 
 $GOPATH/src/
 
-- Install govendor
+- Install dependencies
 ```
-sudo snap install govendor --classic
-```
-- Create vendor.json:
-```
-# Setup your project.
-cd "my project in GOPATH"
-govendor init
+# Init go.mod
+GO111MODULE=on go mod init
 
-# Add existing GOPATH files to vendor.
-govendor add +external
+# Download dependencies
+GO111MODULE=on go mod download
 
-# View your work.
-govendor list
+# Create vendor folder
+GO111MODULE=on go mod vendor
 
 ```
 - Add public key to remote machine:
